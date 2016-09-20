@@ -62,8 +62,126 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="alglibnet2">
+      <HintPath>Lib\alglibnet2.dll</HintPath>
+    </Reference>
+    <Reference Include="AStar">
+      <HintPath>Lib\AStar.dll</HintPath>
+    </Reference>
+    <Reference Include="AviFile">
+      <HintPath>Lib\AviFile.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>Lib\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseClassesNET">
+      <HintPath>Lib\BaseClassesNET.dll</HintPath>
+    </Reference>
+    <Reference Include="BSE.Windows.Forms">
+      <HintPath>Lib\BSE.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>Lib\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Crom.Controls">
+      <HintPath>Lib\Crom.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="CsAssortedWidgets.net">
+      <HintPath>Lib\CsAssortedWidgets.net.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectShowLib-2005">
+      <HintPath>Lib\DirectShowLib-2005.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>Lib\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>Lib\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip.Reduced">
+      <HintPath>Lib\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython">
+      <HintPath>Lib\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules">
+      <HintPath>Lib\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="KMLib">
+      <HintPath>Lib\KMLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MetaDataExtractor">
+      <HintPath>Lib\MetaDataExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX">
+      <HintPath>Lib\Microsoft.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.DirectInput">
+      <HintPath>Lib\Microsoft.DirectX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>Lib\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>Lib\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core">
+      <HintPath>Lib\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Debugging">
+      <HintPath>Lib\Microsoft.Scripting.Debugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.ExtensionAttribute">
+      <HintPath>Lib\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMac">
+      <HintPath>Lib\MonoMac.dll</HintPath>
+    </Reference>
+    <Reference Include="netDxf">
+      <HintPath>Lib\netDxf.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>Lib\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.Compatibility">
+      <HintPath>Lib\OpenTK.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>Lib\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjNet">
+      <HintPath>Lib\ProjNet.dll</HintPath>
+    </Reference>
+    <Reference Include="px4uploader">
+      <HintPath>Lib\px4uploader.exe</HintPath>
+    </Reference>
+    <Reference Include="Sharp3D.Math">
+      <HintPath>Lib\Sharp3D.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Sharp3D.Math.DirectX">
+      <HintPath>Lib\Sharp3D.Math.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="Sharp3D.Math.GDI">
+      <HintPath>Lib\Sharp3D.Math.GDI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpKml">
+      <HintPath>Lib\SharpKml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>Lib\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive">
+      <HintPath>Lib\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,20 +190,36 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Transitions">
+      <HintPath>Lib\Transitions.dll</HintPath>
+    </Reference>
     <Reference Include="ZedGraph">
       <HintPath>..\..\..\NANOSAT PENS\[2] PROGRAM\5 userInterface\PENSat\myUserInterface\myCustomUI\Lib\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\csvFileIO.cs" />
+    <Compile Include="Koneksi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Koneksi.Designer.cs">
+      <DependentUpon>Koneksi.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MAVLink\MAVLink.cs" />
+    <Compile Include="MAVLink\MavlinkCRC.cs" />
+    <Compile Include="MAVLink\MavlinkOther.cs" />
+    <Compile Include="MAVLink\MAVLinkTypes.cs" />
+    <Compile Include="MAVLink\MavlinkUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Koneksi.resx">
+      <DependentUpon>Koneksi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,9 +243,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -138,6 +269,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\Temperature_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Library\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

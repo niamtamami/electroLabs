@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
 using System.Globalization;
-using csvFileIO;
 
 namespace programGUI
 {
@@ -540,38 +539,8 @@ namespace programGUI
             }
         }
 
-        void WriteTest()
-        {
-            // Write sample data to CSV file
-            using (CsvFileWriter writer = new CsvFileWriter("WriteTest.csv"))
-            {
-                for (int i = 0; i < 100; i++)
-                {
-                    CsvRow row = new CsvRow();
-                    for (int j = 0; j < 5; j++)
-                        row.Add(String.Format("Column{0}", j));
-                    writer.WriteRow(row);
-                }
-            }
-        }
 
-        void ReadTest()
-        {
-            // Read sample data from CSV file
-            using (CsvFileReader reader = new CsvFileReader("ReadTest.csv"))
-            {
-                CsvRow row = new CsvRow();
-                while (reader.ReadRow(row))
-                {
-                    foreach (string s in row)
-                    {
-                        Console.Write(s);
-                        Console.Write(" ");
-                    }
-                    Console.WriteLine();
-                }
-            }
-        }
+        
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
