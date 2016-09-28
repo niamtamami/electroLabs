@@ -81,6 +81,7 @@
             this.timerLoop = new System.Windows.Forms.Timer(this.components);
             this.labelAddon = new System.Windows.Forms.Label();
             this.labelError = new System.Windows.Forms.Label();
+            this.checkBoxAcak = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -319,6 +320,7 @@
             // 
             // tabPageQuickCommand
             // 
+            this.tabPageQuickCommand.Controls.Add(this.checkBoxAcak);
             this.tabPageQuickCommand.Controls.Add(this.label2);
             this.tabPageQuickCommand.Controls.Add(this.comboBox1);
             this.tabPageQuickCommand.Controls.Add(this.buttonPeriode);
@@ -350,7 +352,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Lime;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 25);
+            this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.MaximumSize = new System.Drawing.Size(600, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 20);
@@ -362,9 +364,8 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "manual",
-            "periodik",
-            "acak"});
-            this.comboBox1.Location = new System.Drawing.Point(127, 24);
+            "periodik"});
+            this.comboBox1.Location = new System.Drawing.Point(127, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 21);
             this.comboBox1.TabIndex = 23;
@@ -650,7 +651,7 @@
             this.labelAddon.AutoSize = true;
             this.labelAddon.BackColor = System.Drawing.Color.Magenta;
             this.labelAddon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAddon.Location = new System.Drawing.Point(250, 47);
+            this.labelAddon.Location = new System.Drawing.Point(331, 47);
             this.labelAddon.MaximumSize = new System.Drawing.Size(600, 60);
             this.labelAddon.Name = "labelAddon";
             this.labelAddon.Size = new System.Drawing.Size(40, 18);
@@ -668,6 +669,16 @@
             this.labelError.Size = new System.Drawing.Size(241, 25);
             this.labelError.TabIndex = 5;
             this.labelError.Text = "Rata2 Error : 0000 RPM";
+            // 
+            // checkBoxAcak
+            // 
+            this.checkBoxAcak.AutoSize = true;
+            this.checkBoxAcak.Location = new System.Drawing.Point(127, 28);
+            this.checkBoxAcak.Name = "checkBoxAcak";
+            this.checkBoxAcak.Size = new System.Drawing.Size(94, 17);
+            this.checkBoxAcak.TabIndex = 25;
+            this.checkBoxAcak.Text = "Set Poin Acak";
+            this.checkBoxAcak.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -760,6 +771,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelAddon;
         private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.CheckBox checkBoxAcak;
     }
 }
 

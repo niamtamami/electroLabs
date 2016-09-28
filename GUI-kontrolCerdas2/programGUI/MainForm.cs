@@ -27,6 +27,8 @@ namespace programGUI
         System.IO.StreamWriter fileSimpan, periodikFileSimpan;
         int setPointPC=0, P=0, I=0,D=0;
         byte manualPeriodikAcak=0;
+        Random rnd = new Random();
+        
        
         RollingPointPairList list1 = new RollingPointPairList(1200);
         RollingPointPairList list2 = new RollingPointPairList(1200);
@@ -347,9 +349,17 @@ namespace programGUI
                 {
                     try
                     {
-                        if (upDown)
+                        if (checkBoxAcak.Checked == true)
+                        {
+                            int pengaliSetPoint = rnd.Next(1, 20); // creates a number between 1 and 12
+                            setPointPC = pengaliSetPoint * 100;
+                        }
+                        else
                         {
                             setPointPC = int.Parse(textBoxKirimSetPoin.Text);
+                        }
+                        if (upDown)
+                        {
                             try
                             {
                                 serialPort.Write("s" + setPointPC.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
@@ -358,10 +368,10 @@ namespace programGUI
                         }
                         else if (!upDown)
                         {
-                            setPointPC = 0;
+                            int nol = 0;
                             try
                             {
-                                serialPort.Write("s" + setPointPC.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
+                                serialPort.Write("s" + nol.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
                             }
                             catch { }
                         }
