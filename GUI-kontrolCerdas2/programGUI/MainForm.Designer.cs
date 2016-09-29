@@ -82,6 +82,7 @@
             this.labelAddon = new System.Windows.Forms.Label();
             this.labelError = new System.Windows.Forms.Label();
             this.checkBoxAcak = new System.Windows.Forms.CheckBox();
+            this.checkBoxSetPointPeriodik = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -176,7 +177,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.zedGraphControl);
             this.splitContainer2.Size = new System.Drawing.Size(705, 625);
-            this.splitContainer2.SplitterDistance = 74;
+            this.splitContainer2.SplitterDistance = 97;
             this.splitContainer2.TabIndex = 0;
             // 
             // labelSetPoint
@@ -217,7 +218,7 @@
             // 
             // zedGraphControl
             // 
-            this.zedGraphControl.Location = new System.Drawing.Point(3, 3);
+            this.zedGraphControl.Location = new System.Drawing.Point(0, 3);
             this.zedGraphControl.Name = "zedGraphControl";
             this.zedGraphControl.ScrollGrace = 0D;
             this.zedGraphControl.ScrollMaxX = 0D;
@@ -226,7 +227,7 @@
             this.zedGraphControl.ScrollMinX = 0D;
             this.zedGraphControl.ScrollMinY = 0D;
             this.zedGraphControl.ScrollMinY2 = 0D;
-            this.zedGraphControl.Size = new System.Drawing.Size(698, 579);
+            this.zedGraphControl.Size = new System.Drawing.Size(698, 518);
             this.zedGraphControl.TabIndex = 0;
             // 
             // buttonClear
@@ -320,6 +321,7 @@
             // 
             // tabPageQuickCommand
             // 
+            this.tabPageQuickCommand.Controls.Add(this.checkBoxSetPointPeriodik);
             this.tabPageQuickCommand.Controls.Add(this.checkBoxAcak);
             this.tabPageQuickCommand.Controls.Add(this.label2);
             this.tabPageQuickCommand.Controls.Add(this.comboBox1);
@@ -365,7 +367,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "manual",
             "periodik"});
-            this.comboBox1.Location = new System.Drawing.Point(127, 2);
+            this.comboBox1.Location = new System.Drawing.Point(6, 26);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 21);
             this.comboBox1.TabIndex = 23;
@@ -651,7 +653,7 @@
             this.labelAddon.AutoSize = true;
             this.labelAddon.BackColor = System.Drawing.Color.Magenta;
             this.labelAddon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAddon.Location = new System.Drawing.Point(331, 47);
+            this.labelAddon.Location = new System.Drawing.Point(5, 74);
             this.labelAddon.MaximumSize = new System.Drawing.Size(600, 60);
             this.labelAddon.Name = "labelAddon";
             this.labelAddon.Size = new System.Drawing.Size(40, 18);
@@ -679,6 +681,16 @@
             this.checkBoxAcak.TabIndex = 25;
             this.checkBoxAcak.Text = "Set Poin Acak";
             this.checkBoxAcak.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSetPointPeriodik
+            // 
+            this.checkBoxSetPointPeriodik.AutoSize = true;
+            this.checkBoxSetPointPeriodik.Location = new System.Drawing.Point(127, 6);
+            this.checkBoxSetPointPeriodik.Name = "checkBoxSetPointPeriodik";
+            this.checkBoxSetPointPeriodik.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxSetPointPeriodik.TabIndex = 26;
+            this.checkBoxSetPointPeriodik.Text = "Set Poin Periodik";
+            this.checkBoxSetPointPeriodik.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -772,6 +784,7 @@
         private System.Windows.Forms.Label labelAddon;
         private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.CheckBox checkBoxAcak;
+        private System.Windows.Forms.CheckBox checkBoxSetPointPeriodik;
     }
 }
 

@@ -29,7 +29,7 @@ int outputValue = 0;        // value output to the PWM (analog out)
 
 void setup() {
   // initialize serial communications at 9600 bps:
-  Serial.begin(9600);
+  Serial.begin(19200);
 }
 
 void loop() {
@@ -41,7 +41,7 @@ void loop() {
   analogWrite(analogOutPin, outputValue);
 
   // print the results to the serial monitor:
-  Serial.print("R1000,S750,P300,W0.5,B0.5\r");
+  Serial.print("R1000,S750,P300,W0.5,B0.5,p1.2,i0.3,d0.2,E100\r");
 
   // wait 2 milliseconds before the next loop
   // for the analog-to-digital converter to settle

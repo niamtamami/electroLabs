@@ -24,6 +24,7 @@ namespace programGUI
         int tickStart, periode=20;
         String dataSimpan, pDataSimpan;
         double kecepatanMotor, setPoint, PWM, bobot, bias, rata2Error=0;
+        double proporsional, integral, diferensial, Error;
         System.IO.StreamWriter fileSimpan, periodikFileSimpan;
         int setPointPC=0, P=0, I=0,D=0;
         byte manualPeriodikAcak=0;
@@ -188,7 +189,7 @@ namespace programGUI
             {
                 try
                 {
-                    terima = serialPort.ReadTo("\n");
+                    terima = serialPort.ReadTo("\r");
 
                 }
                 catch
@@ -199,70 +200,81 @@ namespace programGUI
 
         private void parseData(object sender, EventArgs e)
         {
-            String[] Data, DataPayload;
+            String[] Data;
             char[] delimiterChars = { ',' };
-            if (ambilData)
+
+            richTextBoxDataTerima.AppendText(terima + "\n");
+            Data = terima.Split(delimiterChars);
+            Console.WriteLine(Data.Length);
+            byte i;
+            string header;
+            try
             {
-                richTextBoxDataTerima.AppendText(terima + "\n");
-                Data = terima.Split(delimiterChars);
-                
-                try
+                for (i = 0; i < Data.Length; i++)
                 {
-                    if (Data.Length >= 3)
+                    header = Data[i].Substring(0, 1);
+                    switch (header)
                     {
-                        try
-                        {
-                            Console.WriteLine(Data.Length);
-                        }
-                        catch
-                        { }
-                        if (recording)
-                        {
-                            //untuk penyimpanan data, belum di set
-                            DataPayload = Data[4].Split('|');
-                            dataSimpan = String.Format("{0:T}",DateTime.Now) + "," + Data[1] + "," + Data[2] + "," + Data[3] + "," + Data[4] + "," + DataPayload[0] + "," + DataPayload[1] + "," + DataPayload[2] + "," + Data[5];
-                            fileSimpan.WriteLine(dataSimpan);
-                        }
-                        try
-                        {
-                            dataUkur1 = Data[0].Split('R');
-                            Console.WriteLine(dataUkur1[1]);
-                            dataUkur2 = Data[1].Split('S');
-                            Console.WriteLine(dataUkur2[1]);
-                            dataUkur3 = Data[2].Split('P');
-                            Console.WriteLine(dataUkur3[1]);
-                            dataUkur4 = Data[3].Split('W');
-                            Console.WriteLine(dataUkur4[1]);
-                            dataUkur5 = Data[4].Split('B');
-                            Console.WriteLine(dataUkur5[1]);
-
-                            labelSpeed.Text = "Speed : "+ dataUkur1[1] +" RPM";
-                            labelSetPoint.Text = "Set Poin : " + dataUkur2[1];
-                            labelPWM.Text = "PWM : " + dataUkur3[1];
-                            labelAddon.Text = "W = " + dataUkur4[1] + " " + "B = " + dataUkur5[1] + "\n";
-
-                            kecepatanMotor = double.Parse(dataUkur1[1]);
-                            setPoint = double.Parse(dataUkur2[1]);
-                            PWM = double.Parse(dataUkur3[1]);
-                            bobot = double.Parse(dataUkur4[1]);
-                            bias = double.Parse(dataUkur5[1]);
-
-                            
-                
-                        }
-                        catch { }
-                    }
-                    else
-                    {
-
+                        case "R":
+                            setPoint = int.Parse(Data[i].Substring(1)); // merah
+                            break;
+                        case "S":
+                            kecepatanMotor = int.Parse(Data[i].Substring(1)); // biru
+                            break;
+                        case "P":
+                            PWM = int.Parse(Data[i].Substring(1));
+                            break;
+                        case "p":
+                            proporsional = double.Parse(Data[i].Substring(1));
+                            break;
+                        case "i":
+                            integral = double.Parse(Data[i].Substring(1));
+                            break;
+                        case "d":
+                            diferensial = double.Parse(Data[i].Substring(1));
+                            break;
+                        case "W":
+                            bobot = double.Parse(Data[i].Substring(1));
+                            break;
+                        case "B":
+                            bias = double.Parse(Data[i].Substring(1));
+                            break;
+                        case "E":
+                            Error = int.Parse(Data[i].Substring(1));
+                            break;
+                        default :
+                            break;
                     }
                 }
-                catch { }
+            }
+            catch { }
+            /*
+            dataUkur1 = Data[0].Split('R');
+            Console.WriteLine(dataUkur1[1]);
+            dataUkur2 = Data[1].Split('S');
+            Console.WriteLine(dataUkur2[1]);
+            dataUkur3 = Data[2].Split('P');
+            Console.WriteLine(dataUkur3[1]);
+            dataUkur4 = Data[3].Split('p');
+            Console.WriteLine(dataUkur4[1]);
+            dataUkur5 = Data[4].Split('i');
+            Console.WriteLine(dataUkur5[1]);
+            dataUkur6 = Data[3].Split('d');
+            Console.WriteLine(dataUkur6[1]);
+            dataUkur7 = Data[4].Split('E');
+            Console.WriteLine(dataUkur7[1]);
+            */
 
-                
+            labelSpeed.Text = "Speed : " + kecepatanMotor.ToString() + " RPM";
+            labelSetPoint.Text = "Set Poin : " + setPoint.ToString();
+            labelPWM.Text = "PWM : " + PWM.ToString();
+            labelAddon.Text = "P = " + proporsional.ToString() + " I = " + integral.ToString() + " D = " + diferensial.ToString() + " W = " + bobot.ToString() + " B = " + bias.ToString() + " Error = " + Error.ToString() + "\n";
 
-            }    
- 
+            //kecepatanMotor = double.Parse(dataUkur1[1]);
+            //setPoint = double.Parse(dataUkur2[1]);
+            //PWM = double.Parse(dataUkur3[1]);
+            //bobot = double.Parse(dataUkur4[1]);
+            //bias = double.Parse(dataUkur5[1]);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -343,15 +355,16 @@ namespace programGUI
         private void timerLoop_Tick(object sender, EventArgs e)
         {
             timeSampling++;
-            if (manualPeriodikAcak == 1)
+            if (checkBoxSetPointPeriodik.Checked)
             {
                 if (timeSampling >= (periode * 10))
                 {
+                    timeSampling = 1;
                     try
                     {
                         if (checkBoxAcak.Checked == true)
                         {
-                            int pengaliSetPoint = rnd.Next(1, 20); // creates a number between 1 and 12
+                            int pengaliSetPoint = rnd.Next(0, 20); // creates a number between 1 and 12
                             setPointPC = pengaliSetPoint * 100;
                         }
                         else
@@ -368,17 +381,20 @@ namespace programGUI
                         }
                         else if (!upDown)
                         {
-                            int nol = 0;
+                            if (!checkBoxAcak.Checked)
+                            {
+                                setPointPC = 0;
+                            }
                             try
                             {
-                                serialPort.Write("s" + nol.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
+                                serialPort.Write("s" + setPointPC.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
                             }
                             catch { }
                         }
                         upDown = !upDown;
                     }
                     catch { }
-                    timeSampling = 1;
+                    
                 }
             }
             rata2Error = 0.5*rata2Error+0.5*(setPointPC - kecepatanMotor);
@@ -530,17 +546,20 @@ namespace programGUI
 
         private void buttonPW_Click(object sender, EventArgs e)
         {
-            P = int.Parse(textBoxPW.Text);
+            P = (int)(double.Parse(textBoxPW.Text)*100);
+            richTextBoxNotif.AppendText("p" + P.ToString("D4") + "\r");
             try
             {
                 serialPort.Write("p" + P.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
+                
             }
             catch { }
         }
 
         private void buttonIB_Click(object sender, EventArgs e)
         {
-            I = int.Parse(textBoxIB.Text);
+            I = (int)(double.Parse(textBoxIB.Text)*100);
+            richTextBoxNotif.AppendText("i" + I.ToString("D4") + "\r");
             try
             {
                 serialPort.Write("i" + I.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
@@ -550,7 +569,10 @@ namespace programGUI
 
         private void buttonD_Click(object sender, EventArgs e)
         {
-            D = int.Parse(textBoxD.Text);
+            //String contoh = "niamtamami";
+            //richTextBoxNotif.AppendText(contoh.Substring(4));
+            D = (int)(double.Parse(textBoxD.Text));
+            richTextBoxNotif.AppendText("d" + D.ToString("D4") + "\r");
             try
             {
                 serialPort.Write("d" + D.ToString("D4") + "\r");    // Ubah format 575 > D4 > 0575
@@ -561,12 +583,12 @@ namespace programGUI
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0) {
-                richTextBoxNotif.AppendText("manual");
+                richTextBoxNotif.AppendText("manual\n");
                 manualPeriodikAcak = 0;
             }
             else if (comboBox1.SelectedIndex == 1)
             {
-                richTextBoxNotif.AppendText("periodik");
+                richTextBoxNotif.AppendText("periodik\n");
                 manualPeriodikAcak = 1;
             }
             else if (comboBox1.SelectedIndex == 2)
